@@ -10,10 +10,15 @@ inputs:
 outputs:
   model_output_decision_tree:
     type: uri_folder
+  metrics_output:
+    type: uri_file
+    description: JSON file containing model performance metrics (AUC and accuracy)
 code: ../src
 environment: azureml:AzureML-sklearn-0.24-ubuntu18.04-py37-cpu@latest
 command: >-
   python train-decision-tree.py 
   --training_data ${{inputs.training_data}} 
   --model_output_decision_tree ${{outputs.model_output_decision_tree}}
+  --metrics_output ${{outputs.metrics_output}}
+
 # </component>

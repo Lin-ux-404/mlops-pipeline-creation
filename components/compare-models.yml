@@ -1,0 +1,33 @@
+# <component>
+$schema: https://azuremlschemas.azureedge.net/latest/commandComponent.schema.json
+name: compare_two_models
+display_name: Comparing Two Models
+version: 1
+type: command
+inputs:
+  model1:
+    type: uri_folder
+    description: Path to the first model
+  model1_metrics:
+    type: uri_file
+    description: JSON file containing AUC and accuracy for the first model
+  model2:
+    type: uri_folder
+    description: Path to the second model
+  model2_metrics:
+    type: uri_file
+    description: JSON file containing AUC and accuracy for the second model
+outputs:
+  better_model:
+    type: uri_folder
+    description: Path of the better model based on comparison
+code: ../src
+environment: azureml:AzureML-sklearn-0.24-ubuntu18.04-py37-cpu@latest
+command: >-
+  python compare-models.py 
+  --model1 ${{inputs.model1}} 
+  --model1_metrics ${{inputs.model1_metrics}} 
+  --model2 ${{inputs.model2}} 
+  --model2_metrics ${{inputs.model2_metrics}} 
+  --better_model ${{outputs.better_model}}
+# </component>

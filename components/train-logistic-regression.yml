@@ -13,6 +13,9 @@ inputs:
 outputs:
   model_output_logistic_reg:
     type: uri_folder
+  metrics_output:
+    type: uri_file
+    description: JSON file containing model performance metrics (AUC and accuracy)
 code: ../src
 environment: azureml:AzureML-sklearn-0.24-ubuntu18.04-py37-cpu@latest
 command: >-
@@ -20,4 +23,6 @@ command: >-
   --training_data ${{inputs.training_data}}
   --reg_rate ${{inputs.regularization_rate}}
   --model_output_logistic_reg ${{outputs.model_output_logistic_reg}}
+  --metrics_output ${{outputs.metrics_output}}
+
 # </component>

@@ -11,12 +11,15 @@ import pandas as pd
 from sklearn.metrics import confusion_matrix, roc_auc_score, roc_curve
 from sklearn.model_selection import train_test_split
 from sklearn.tree import DecisionTreeClassifier
+import json
 import os
 
 # get parameters
 parser = argparse.ArgumentParser("train")
 parser.add_argument("--training_data", type=str, help="Path to training data")
 parser.add_argument("--model_output_decision_tree", type=str, help="Path of output model")
+parser.add_argument("--metrics_output", type=str, help="Metrics of model performance")
+
 
 args = parser.parse_args()
 
@@ -97,11 +100,24 @@ plt.title("Confusion Matrix", fontsize=18)
 plt.savefig("ConfusionMatrix.png")
 mlflow.log_artifact("ConfusionMatrix.png")
 
-# Save model locally
-output_dir = os.environ.get("AZUREML_OUTPUTDIR", "./outputs")
+# Save model 
+output_dir = Path(args.metrics_output)
 save_path = os.path.join(output_dir, "models/")
 mlflow.sklearn.save_model(
     sk_model=model,
     path=save_path
 )
+
+# Save metrics to JSON file
+metrics = {
+    "accuracy": acc,
+    "auc": auc
+}
+metrics_output_path = os.path.join(output_dir, "metrics_decision_tree_model.json")
+
+with open(metrics_output_path, "w") as f:
+    json.dump(metrics, f)
+
+
+
 mlflow.end_run()
