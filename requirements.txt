@@ -153,6 +153,7 @@ marshmallow==3.23.1
 matplotlib==3.9.3
 matplotlib-inline==0.1.7
 microsoft-security-utilities-secret-masker==1.0.0b3
+mldesigner==0.1.0b18
 mlflow==2.18.0
 mlflow-skinny==2.18.0
 msal==1.31.0
