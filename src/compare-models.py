@@ -2,7 +2,8 @@ import argparse
 import json
 import os
 from pathlib import Path
-
+import shutil
+from distutils.dir_util import copy_tree
 
 def determine_better_model(model1_metrics, model2_metrics, model1_savepath, model2_savepath):
     """
@@ -60,3 +61,18 @@ with open(model2_metrics_path, "r") as f:
 
 # Determine the better model
 better_model_path = determine_better_model(model1_metrics, model2_metrics, args.model1, args.model2)
+print(f"The better model is located at: {better_model_path}")
+print(f"Metrics were here: {model1_metrics_path}")
+
+
+# Save the better model to the specified output directory
+better_model_output_path = Path(args.better_model)
+better_model_output_path.mkdir(parents=True, exist_ok=True)
+
+# Copy the entire directory tree to the output directory
+better_model_source_path = Path(better_model_path)
+if not better_model_source_path.exists():
+    raise FileNotFoundError(f"The determined better model path does not exist: {better_model_path}")
+
+# Use distutils to copy the contents of the directory
+copy_tree(str(better_model_source_path), str(better_model_output_path))

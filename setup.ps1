@@ -34,8 +34,8 @@ Write-Output "Creating a compute cluster with name: $env:COMPUTE_CLUSTER"
 az ml compute create --name $env:COMPUTE_CLUSTER --size STANDARD_DS11_V2 --max-instances 2 --type AmlCompute
 
 # Create data assets (components)
-# Write-Output "Creating components"
-# az ml component create --file ./components/fix-missing-data.yml
-# az ml component create --file ./components/normalize-data.yml
-# az ml component create --file ./components/train-decision-tree.yml
-# az ml component create --file ./components/train-logistic-regression.yml
+Write-Output "Creating components"
+az ml component create --file ./components/fix-missing-data.yml
+az ml component create --file ./components/normalize-data.yml
+az ml component create --file ./components/train-decision-tree.yml
+az ml component create --file ./components/train-logistic-regression.yml

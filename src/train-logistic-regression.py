@@ -12,6 +12,8 @@ from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import confusion_matrix, roc_auc_score, roc_curve
 from sklearn.model_selection import train_test_split
 import os
+import json
+
 
 # get parameters
 parser = argparse.ArgumentParser("train")
@@ -105,10 +107,8 @@ output_dir = Path(args.metrics_output)
 save_path = os.path.join(output_dir, "models/")
 mlflow.sklearn.save_model(
     sk_model=model,
-    path=save_path
+    path=save_path,
 )
-
-import json
 
 # Save metrics to JSON file
 metrics = {
