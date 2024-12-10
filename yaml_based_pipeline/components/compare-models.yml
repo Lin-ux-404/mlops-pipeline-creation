@@ -21,7 +21,7 @@ outputs:
   better_model:
     type: uri_folder
     description: Path of the better model based on comparison
-code: ../src
+code: ../src/
 environment: azureml:AzureML-sklearn-0.24-ubuntu18.04-py37-cpu@latest
 command: >-
   python compare-models.py 
