@@ -25,7 +25,7 @@ def train_logistic_regression_classifier_model(
     model_output_logistic_reg: Output(type="uri_folder"),
     metrics_output: Output(type="uri_file"),
     regularization_rate: float = 0.01,
-)-> None:
+):
     
     # Load training data
     print("Loading data...")
@@ -62,13 +62,10 @@ def train_logistic_regression_classifier_model(
     y_pred = model.predict(X_test)
     acc = np.mean(y_pred == y_test)
     print(f"Accuracy: {acc}")
-    mlflow.log_metric("Accuracy", acc)
 
     y_pred_proba = model.predict_proba(X_test)[:, 1]
     auc = roc_auc_score(y_test, y_pred_proba)
     print(f"AUC: {auc}")
-    mlflow.log_metric("AUC", auc)
-
     # Save ROC curve
     fpr, tpr, thresholds = roc_curve(y_test, y_pred_proba)
     plt.figure()
@@ -79,7 +76,6 @@ def train_logistic_regression_classifier_model(
     plt.title("ROC Curve")
     plt.legend()
     plt.savefig("ROCcurve.png")
-    mlflow.log_artifact("ROCcurve.png")
 
     # Save confusion matrix
     conf_matrix = confusion_matrix(y_test, y_pred)
@@ -94,17 +90,19 @@ def train_logistic_regression_classifier_model(
     plt.ylabel("Actuals")
     plt.title("Confusion Matrix")
     plt.savefig("ConfusionMatrix.png")
-    mlflow.log_artifact("ConfusionMatrix.png")
 
+    print("Saving model and metrics...")
     # Save model
-    model_dir = Path(model_output_logistic_reg)
+    model_dir = Path(metrics_output)
     model_dir.mkdir(parents=True, exist_ok=True)
-    mlflow.sklearn.save_model(model, path=str(model_dir))
+    save_path = os.path.join(model_dir, "models/")
+    mlflow.sklearn.save_model(model, path=save_path)
 
     # Save metrics to JSON
     metrics = {
         "accuracy": acc,
         "auc": auc,
     }
-    with open(metrics_output, "w") as f:
+    metrics_output_path = os.path.join(model_dir, "metrics_logistic_regression_model.json")
+    with open(metrics_output_path, "w") as f:
         json.dump(metrics, f)

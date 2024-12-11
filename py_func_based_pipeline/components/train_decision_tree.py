@@ -25,7 +25,7 @@ def train_decision_tree_classifier_model(
     training_data: Input(type="uri_folder"),
     model_output_decision_tree: Output(type="uri_folder"),
     metrics_output: Output(type="uri_file"),
-) -> None:
+):
     # Load the prepared data file in the training folder
     print("Loading Data...")
     all_files = glob.glob(os.path.join(training_data, "*.csv"))
@@ -59,14 +59,13 @@ def train_decision_tree_classifier_model(
     y_pred = model.predict(X_test)
     acc = np.mean(y_pred == y_test)
     print(f"Accuracy: {acc}")
-    mlflow.log_metric("Accuracy", acc)
 
     # Calculate AUC if `predict_proba` is available
     if hasattr(model, "predict_proba"):
         y_pred_proba = model.predict_proba(X_test)[:, 1]
         auc = roc_auc_score(y_test, y_pred_proba)
         print(f"AUC: {auc}")
-        mlflow.log_metric("AUC", auc)
+        # mlflow.log_metric("AUC", auc)
 
         # Plot ROC curve
         fpr, tpr, thresholds = roc_curve(y_test, y_pred_proba)
@@ -78,7 +77,6 @@ def train_decision_tree_classifier_model(
         plt.title("ROC Curve")
         plt.legend()
         plt.savefig("ROCcurve.png")
-        mlflow.log_artifact("ROCcurve.png")
     else:
         print("Model does not support predict_proba; skipping AUC and ROC curve.")
 
@@ -88,26 +86,28 @@ def train_decision_tree_classifier_model(
     plt.matshow(conf_matrix, cmap=plt.cm.Blues, alpha=0.5)
     for i in range(conf_matrix.shape[0]):
         for j in range(conf_matrix.shape[1]):
-            plt.text(
+            plt.text(   
                 x=j, y=i, s=conf_matrix[i, j], ha="center", va="center"
             )
     plt.xlabel("Predictions")
     plt.ylabel("Actuals")
     plt.title("Confusion Matrix")
     plt.savefig("ConfusionMatrix.png")
-    mlflow.log_artifact("ConfusionMatrix.png")
 
+    print("Saving model and metrics...")
     # Save model to the specified output folder
-    model_output_dir = Path(model_output_decision_tree)
-    model_output_dir.mkdir(parents=True, exist_ok=True)
-    mlflow.sklearn.save_model(sk_model=model, path=str(model_output_dir))
+    # Save model
+    model_dir = Path(metrics_output)
+    model_dir.mkdir(parents=True, exist_ok=True)
+    save_path = os.path.join(model_dir, "models/")
+    mlflow.sklearn.save_model(model, path=save_path)
 
-    # Save metrics to JSON file
-    metrics = {"accuracy": acc}
-    if 'auc' in locals():
-        metrics["auc"] = auc
-
-    with open(metrics_output, "w") as f:
+    # Save metrics to JSON
+    metrics = {
+        "accuracy": acc,
+        "auc": auc,
+    }
+    
+    metrics_output_path = os.path.join(model_dir, "metrics_logistic_regression_model.json")
+    with open(metrics_output_path, "w") as f:
         json.dump(metrics, f)
-
-    print("Model and metrics saved successfully.")
