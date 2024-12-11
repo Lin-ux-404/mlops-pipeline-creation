@@ -53,6 +53,9 @@ The goal is to demonstrate how to deploy pipelines to Azure Machine Learning Stu
 
   **Reference:**
   [Python Function Components Documentation](https://learn.microsoft.com/en-us/azure/machine-learning/how-to-create-component-pipeline-python?view=azureml-api-2)
+  [CommandComponent Class](https://learn.microsoft.com/en-us/python/api/azure-ai-ml/azure.ai.ml.entities.commandcomponent?view=azure-python)
+  [Manage inputs and outputs for components and pipelines Python](https://learn.microsoft.com/en-us/python/api/azure-ai-ml/azure.ai.ml.entities.commandcomponent?view=azure-python)
+
 
 
 ### Pipelines with YAML-based Components
@@ -65,6 +68,8 @@ The goal is to demonstrate how to deploy pipelines to Azure Machine Learning Stu
 
   **Reference:**
   [YAML Components Documentation](https://learn.microsoft.com/en-us/azure/machine-learning/how-to-create-component-pipelines-cli?view=azureml-api-2)
+  [Manage inputs and outputs for components and pipelines YAML](https://learn.microsoft.com/en-us/azure/machine-learning/how-to-manage-inputs-outputs-pipeline?view=azureml-api-2&tabs=cli)
+
 
 
 ## Authors
