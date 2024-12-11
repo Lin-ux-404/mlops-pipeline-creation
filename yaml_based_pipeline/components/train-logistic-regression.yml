@@ -19,7 +19,7 @@ outputs:
 code: ../src/
 environment: azureml:AzureML-sklearn-0.24-ubuntu18.04-py37-cpu@latest
 command: >-
-  python train-logistic-regression.py 
+  python train_logistic_regression.py 
   --training_data ${{inputs.training_data}}
   --reg_rate ${{inputs.regularization_rate}}
   --model_output_logistic_reg ${{outputs.model_output_logistic_reg}}

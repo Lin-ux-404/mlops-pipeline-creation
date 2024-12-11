@@ -24,7 +24,7 @@ outputs:
 code: ../src/
 environment: azureml:AzureML-sklearn-0.24-ubuntu18.04-py37-cpu@latest
 command: >-
-  python compare-models.py 
+  python compare_models.py 
   --model1 ${{inputs.model1}} 
   --model1_metrics ${{inputs.model1_metrics}} 
   --model2 ${{inputs.model2}} 

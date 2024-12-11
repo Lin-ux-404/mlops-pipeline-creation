@@ -4,8 +4,6 @@ This repository provides examples of creating reusable components for Azure Mach
 
 > **Note:** This repository demonstrates basic pipeline deployment using simple steps such as data cleaning, model training, and model evaluation. It is intended as a reference and does not provide an end-to-end solution.
 
----
-
 ## Contents
 
 The repository showcases two implementations of the same use case:
@@ -15,7 +13,6 @@ The repository showcases two implementations of the same use case:
 
 The goal is to demonstrate how to deploy pipelines to Azure Machine Learning Studio using either approach.
 
----
 
 ## How to Run
 
@@ -42,7 +39,6 @@ The goal is to demonstrate how to deploy pipelines to Azure Machine Learning Stu
 4. **Run the Notebooks**
    After setup, you can start executing the provided notebooks.
 
----
 
 ### Pipelines with Python Function Components
 
@@ -58,7 +54,6 @@ The goal is to demonstrate how to deploy pipelines to Azure Machine Learning Stu
   **Reference:**
   [Python Function Components Documentation](https://learn.microsoft.com/en-us/azure/machine-learning/how-to-create-component-pipeline-python?view=azureml-api-2)
 
----
 
 ### Pipelines with YAML-based Components
 
@@ -71,13 +66,11 @@ The goal is to demonstrate how to deploy pipelines to Azure Machine Learning Stu
   **Reference:**
   [YAML Components Documentation](https://learn.microsoft.com/en-us/azure/machine-learning/how-to-create-component-pipelines-cli?view=azureml-api-2)
 
----
 
 ## Authors
 
 - [Shenglin Xu](shenglinxu@microsoft.com)
 
----
 
 ## Disclaimer
 

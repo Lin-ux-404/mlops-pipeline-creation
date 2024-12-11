@@ -13,7 +13,7 @@ outputs:
 code: ../src/
 environment: azureml:AzureML-sklearn-0.24-ubuntu18.04-py37-cpu@latest
 command: >-
-  python normalize-data.py 
+  python normalize_data.py 
   --input_data ${{inputs.input_data}} 
   --output_data ${{outputs.output_data}}
 # </component>
