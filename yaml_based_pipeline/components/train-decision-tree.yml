@@ -16,7 +16,7 @@ outputs:
 code: ../src/
 environment: azureml:AzureML-sklearn-0.24-ubuntu18.04-py37-cpu@latest
 command: >-
-  python train-decision_tree.py 
+  python train_decision_tree.py 
   --training_data ${{inputs.training_data}} 
   --model_output_decision_tree ${{outputs.model_output_decision_tree}}
   --metrics_output ${{outputs.metrics_output}}
