@@ -52,9 +52,9 @@ The goal is to demonstrate how to deploy pipelines to Azure Machine Learning Stu
   Use the `py_func_pipeline.ipynb` notebook to learn how to deploy pipelines using Python function components with the Azure ML SDK.
 
   **Reference:**
-  [Python Function Components Documentation](https://learn.microsoft.com/en-us/azure/machine-learning/how-to-create-component-pipeline-python?view=azureml-api-2)
-  [CommandComponent Class](https://learn.microsoft.com/en-us/python/api/azure-ai-ml/azure.ai.ml.entities.commandcomponent?view=azure-python)
-  [Manage inputs and outputs for components and pipelines Python](https://learn.microsoft.com/en-us/python/api/azure-ai-ml/azure.ai.ml.entities.commandcomponent?view=azure-python)
+  - [Python Function Components Documentation](https://learn.microsoft.com/en-us/azure/machine-learning/how-to-create-component-pipeline-python?view=azureml-api-2)
+  - [CommandComponent Class](https://learn.microsoft.com/en-us/python/api/azure-ai-ml/azure.ai.ml.entities.commandcomponent?view=azure-python)
+  - [Manage inputs and outputs for components and pipelines Python](https://learn.microsoft.com/en-us/python/api/azure-ai-ml/azure.ai.ml.entities.commandcomponent?view=azure-python)
 
 
 
@@ -67,8 +67,8 @@ The goal is to demonstrate how to deploy pipelines to Azure Machine Learning Stu
   Use the `yaml_pipeline_deployment.ipynb` notebook to learn how to deploy pipelines using YAML-based components with the Azure ML SDK.
 
   **Reference:**
-  [YAML Components Documentation](https://learn.microsoft.com/en-us/azure/machine-learning/how-to-create-component-pipelines-cli?view=azureml-api-2)
-  [Manage inputs and outputs for components and pipelines YAML](https://learn.microsoft.com/en-us/azure/machine-learning/how-to-manage-inputs-outputs-pipeline?view=azureml-api-2&tabs=cli)
+  - [YAML Components Documentation](https://learn.microsoft.com/en-us/azure/machine-learning/how-to-create-component-pipelines-cli?view=azureml-api-2)
+  - [Manage inputs and outputs for components and pipelines YAML](https://learn.microsoft.com/en-us/azure/machine-learning/how-to-manage-inputs-outputs-pipeline?view=azureml-api-2&tabs=cli)
 
 
 
